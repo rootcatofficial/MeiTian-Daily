@@ -1,0 +1,77 @@
+<!-- Updating profiles from this page -->
+
+
+
+<!DOCTYPE html>
+
+{% load static %} <!-- to integrate all static files -->
+
+{% load crispy_forms_tags %}
+
+<html>
+    
+    <head>
+
+        <title> ToDo - Profile Management </title>
+
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width-device-width, initial-scale=1, maximum-scale=1">
+
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        
+        <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}"/>
+
+        <link rel="stylesheet" type="text/css" href="https://bootswatch.com/5/solar/bootstrap.min.css"/>
+
+        <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}">
+
+        <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+    </head>
+
+    <body>
+
+        {% include 'profile/base.html' %} <!--  This is a tag: inheriting from base.html -->
+        
+        <br>
+        <div class="container bg-white shadow-md p-5 form-layout">
+
+            <h2> Update your profile </h2>
+
+            <hr>
+
+            <form method="POST" autocomplete="off">
+
+                {% csrf_token %}
+
+                {{user_form.username|as_crispy_field}}
+
+                <br>
+
+                {{user_form.email|as_crispy_field}}
+
+                <br>
+
+                <input class="btn btn-primary navbar-btn" type="submit" value="Update Profile"/>
+
+
+            </form>
+
+        </div>
+        <br>
+
+        <div class="container bg-white shadow-md p-5 form-layout">
+
+            <h2> Delete your profile </h2>
+
+            <hr>
+
+            <p style="color: red; font-weight: bolder;"> You are about to delete your account</p>
+
+            <a class="btn btn-primary navbar-btn" type="button" href="{% url 'delete-account' %}"> Delete your account </a>
+
+        </div>   
+
+        <br>
+    </body>
+    
+</html>
